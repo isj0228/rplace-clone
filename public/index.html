@@ -1,21 +1,26 @@
-/* public/index.html */
+// public/index.html
 <!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
   <title>r/place 클론</title>
   <style>
-    #canvas { border:1px solid #000; cursor:pointer; }
-    #palette { margin-top:10px; user-select: none; }
-    .color-swatch {
-      width:20px; height:20px;
-      display:inline-block; margin-right:5px;
-      border:1px solid #000; cursor:pointer;
-    }
+    #controls { margin-bottom: 8px; display: flex; gap: 8px; align-items: center; }
+    #canvas { border:1px solid #000; cursor:crosshair; }
+    #palette { user-select: none; margin-top:10px; display: flex; flex-wrap: wrap; }
+    .color-swatch { width:24px; height:24px; margin:3px; border:2px solid #000; cursor:pointer; }
+    .color-swatch.selected { border:2px solid #FFF; }
   </style>
 </head>
 <body>
-  <!-- 캔버스 크기 1000×1000, 픽셀 크기 5px 고정 -->
+  <div id="controls">
+    <!-- RGB 컬러 피커 -->
+    <input type="color" id="colorPicker" value="#000000" />
+    <!-- 브러시 크기 설정 -->
+    <label for="brushSize">Brush Size:</label>
+    <input type="range" id="brushSize" min="1" max="20" value="1" />
+    <span id="brushSizeLabel">1</span>
+  </div>
   <canvas id="canvas" width="1000" height="1000"></canvas>
   <div id="palette"></div>
   <script src="/socket.io/socket.io.js"></script>
